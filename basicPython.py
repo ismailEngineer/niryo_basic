@@ -5,6 +5,7 @@ import json
 import yaml
 
 # from matplotlib  
+# this comment is for github demonstration
 
 time.sleep(2)
 
@@ -141,8 +142,6 @@ print(a)
 #     - aller_droite : qui va deplacer le robot vers une position droite   
 #     - aller_haut : qui va deplacer le robot vers une position haut  
 
-
-#######  #######
 
 print("###################################")
 
