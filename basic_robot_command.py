@@ -26,8 +26,5 @@ def navigate():
     print("****************")
     print("&&&&&&&&&&&&&&&&&&&&&&&")
     print("^^^^^^^^^^^^^^^^^^^^")
-
-# a = basic_command()
-# a.setter_pose(2.0,3.0,1.0)
     
 
