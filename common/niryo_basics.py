@@ -84,5 +84,3 @@ def pick_place(robot,point1,point2,data_type):
     else : 
         print ("Unknown DATA TYPE !!")
 
-
-goto(1,(0.2, -0.3, 0.1, 0.0, 0.5, -0.8),1)
