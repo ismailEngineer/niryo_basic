@@ -3,6 +3,8 @@ import time
 import numpy as np
 import json
 import yaml
+import os
+import sys
 
 # from matplotlib  
 # this comment is for github demonstration
@@ -145,8 +147,8 @@ print(a)
 
 print("###################################")
 
-# from basic_robot_command import *
-from basic_robot_command import basic_command,navigate
+from basic_robot_command import *
+#from basic_robot_command import basic_command,navigate
 
 instance_1 = basic_command()
 print("############ BEFORE ###############")
@@ -157,10 +159,41 @@ print(instance_1.getter_pose())
 
 navigate()
 
+# dir = os.getcwd()
+# fichier_config = os.path.join(dir,"config.yaml")
+# print("Le fichier config se trouve ici : ",fichier_config)
 
+dir = os.path.dirname("E:\Ismail\workspace\\niryo_basic\README.md")
+fichier_config = os.path.join(dir,"config.yaml")
+print("Le fichier config se trouve ici : ",fichier_config)
 
-with open('config.yaml','r') as file:
+with open(fichier_config,'r') as file:
     object_file = yaml.safe_load(file)
 
 print(object_file['IP_ROBOT'])
 #print(object_file)
+
+# chemin global : E:\Ismail\workspace\niryo_basic\config.yaml
+# chemin local --> relative : config.yaml
+
+# c'est un probleme si on utilise le chemin relative et on execute le pytho dans un chemin different.
+
+
+# ------------------------------------------- # crtl+k+c pour commenter 
+
+# user_input = input("Saisir votre nom de famille : ")
+# try :
+#     integer_user = int(user_input)
+#     print("user typed integer")
+# except :
+#     print("user doesn't type integer")
+# print("Merci Monsieur ", user_input)
+
+# ----------------------------------------- # ctrl+k+u pour decommenter
+
+if len(sys.argv) > 1 :
+    print("argument exist")
+    print(sys.argv[1])
+
+# ----------------------------------------- #
+
