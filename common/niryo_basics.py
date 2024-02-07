@@ -6,10 +6,13 @@ from pyniryo import NiryoRobot
     result : NiryoRobot object
 """
 def init_robot(ip_add):
-    robot = NiryoRobot(ip_add)
-    robot.calibrate_auto()
-    robot.move_joints(0.2, -0.3, 0.1, 0.0, 0.5, -0.8)
-    return robot
+    try :
+        robot = NiryoRobot(ip_add)
+        robot.calibrate_auto()
+        robot.move_joints(0.2, -0.3, 0.1, 0.0, 0.5, -0.8)
+        return robot
+    except : 
+        print("Unable to connect to robot")
 
 """
     Close robot connection 
@@ -34,7 +37,7 @@ def kill_robot(robot):
 """
 def goto(robot,goal,data_type):
     if data_type == 1 : # data_type = 1 is a joint data of 6 floats
-        (j1,j2,j3,j4,j5,j6) = goal
+        (j1,j2,j3,j4,j5,j6) = goal # (0.2, -0.3, 0.1, 0.0, 0.5, -0.8)
         print("GOTO is on execution ... ")
         print("Data type is joint --> "+ str((j1,j2,j3,j4,j5,j6)))
         try :
@@ -84,3 +87,7 @@ def pick_place(robot,point1,point2,data_type):
     else : 
         print ("Unknown DATA TYPE !!")
 
+
+# mon_robot = init_robot("192.168.0.21")
+# goto(mon_robot,(0.2, -0.3, 0.1, 0.0, 0.5, -0.8),1)
+# kill_robot(mon_robot)
