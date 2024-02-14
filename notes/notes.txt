@@ -1,0 +1,2 @@
+Exercice : eviter d'ecrire en dure l'adresse IP du robot dans le code 
+    Ajouter l'adresse IP dans le fichier config.yaml
