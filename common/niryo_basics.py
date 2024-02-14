@@ -48,9 +48,12 @@ def goto(robot,goal,data_type):
         except :
             print ("Unable to move robot !!")
     elif data_type == 2 : # data_type = 2 is a move (x, y, z, roll, pitch, yaw) data of 6 floats
+        (x, y, z, roll, pitch, yaw) = goal 
+        print("GOTO is on execution ... ")
+        print("Data type is move --> "+ str((x, y, z, roll, pitch, yaw)))        
         try :
-            print ("Moving robot !!")
-            (x, y, z, roll, pitch, yaw) = goal    
+            print ("Moving robot !!!")
+            robot.move_pose(x, y, z, roll, pitch, yaw) 
         except :
             print ("Unable to move robot !!")
     else : 
