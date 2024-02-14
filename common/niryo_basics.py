@@ -7,9 +7,11 @@ from pyniryo import NiryoRobot
 """
 def init_robot(ip_add):
     try :
+        print("Connecting to robot ... please wait")
         robot = NiryoRobot(ip_add)
         robot.calibrate_auto()
-        robot.move_joints(0.2, -0.3, 0.1, 0.0, 0.5, -0.8)
+        # robot.move_joints(0.2, -0.3, 0.1, 0.0, 0.5, -0.8)
+        robot.move_pose([0.16, 0.0, 0.35, 0.0, 1.57, 0.0])
         return robot
     except : 
         print("Unable to connect to robot")
@@ -43,6 +45,15 @@ def goto(robot,goal,data_type):
         try :
             robot.move_joints(j1,j2,j3,j4,j5,j6)
             print ("END Action ")
+        except :
+            print ("Unable to move robot !!")
+    elif data_type == 2 : # data_type = 2 is a move (x, y, z, roll, pitch, yaw) data of 6 floats
+        (x, y, z, roll, pitch, yaw) = goal 
+        print("GOTO is on execution ... ")
+        print("Data type is move --> "+ str((x, y, z, roll, pitch, yaw)))        
+        try :
+            print ("Moving robot !!!")
+            robot.move_pose(x, y, z, roll, pitch, yaw) 
         except :
             print ("Unable to move robot !!")
     else : 
@@ -87,7 +98,7 @@ def pick_place(robot,point1,point2,data_type):
     else : 
         print ("Unknown DATA TYPE !!")
 
-
-# mon_robot = init_robot("192.168.0.21")
-# goto(mon_robot,(0.2, -0.3, 0.1, 0.0, 0.5, -0.8),1)
-# kill_robot(mon_robot)
+# -------------------  MAIN   ------------------------------------
+mon_robot = init_robot("192.168.0.21")
+goto(mon_robot,(0.16, 0, 0.35, 0, 1.57, 0),2)
+kill_robot(mon_robot)
