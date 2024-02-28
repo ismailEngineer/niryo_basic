@@ -78,7 +78,7 @@ def pick_place(robot,point1,point2,data_type):
         (j1,j2,j3,j4,j5,j6) = point1
         print("PICK & PLACE is on execution ... ")
 
-        print("Data type is joint --> Start joinst : "+ str((j1,j2,j3,j4,j5,j6)))
+        print("Data type is joint --> Start joints : "+ str((j1,j2,j3,j4,j5,j6)))
         try : 
             robot.move_joints(j1,j2,j3,j4,j5,j6)
             print("Catching Object ... ")
@@ -95,10 +95,43 @@ def pick_place(robot,point1,point2,data_type):
         except :
             ("Unable to move & release object !!")
 
+    elif data_type == 2 : # data_type = 2 is a joint data of 6 floats
+        (x, y, z, roll, pitch, yaw) = point1
+        print("PICK & PLACE is on execution ... ")
+
+        print("Data type is joint --> Start joints : "+ str((x, y, z, roll, pitch, yaw)))
+        try : 
+            robot.move_pose(x, y, z, roll, pitch, yaw) 
+            print("Catching Object ... ")
+            robot.grasp_with_tool()
+        except :
+            print ("Unable to move & catch object !!")
+
+        (x, y, z, roll, pitch, yaw) = point2
+        print("Data type is joint --> Goal joinst : "+ str((x, y, z, roll, pitch, yaw)))
+        try :
+            robot.move_pose(x, y, z, roll, pitch, yaw) 
+            print("Catching Object ... ")
+            robot.release_with_tool()
+        except :
+            ("Unable to move & release object !!")
     else : 
         print ("Unknown DATA TYPE !!")
+
+
+
+def goto_camera_observation(robot):
+    try :
+        # move to camera observation position
+        print("la caméra se positionne en hauteur (MODE OBSERVATION)")
+        robot.move_pose([0.15, 0.0, 0.35, 0.0, 1.57, 0.0])
+    except : 
+        print("Unable to move to observation position")
+
+
 
 # -------------------  MAIN   ------------------------------------
 mon_robot = init_robot("192.168.0.21")
 goto(mon_robot,(0.16, 0, 0.35, 0, 1.57, 0),2)
+goto_camera_observation(mon_robot)
 kill_robot(mon_robot)
