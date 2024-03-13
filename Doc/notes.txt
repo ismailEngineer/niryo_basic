@@ -1,0 +1,6 @@
+Lecture seule ('r')
+Lire et écrire (« r+ »)
+Écriture seule (« w »)
+Écrire et lire (« w+ »)
+Ajouter uniquement (« a »)
+Ajouter et lire (« a+ »)

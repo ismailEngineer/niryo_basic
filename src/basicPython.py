@@ -163,11 +163,13 @@ navigate()
 # fichier_config = os.path.join(dir,"config.yaml")
 # print("Le fichier config se trouve ici : ",fichier_config)
 
-dir = os.path.dirname("E:\Ismail\workspace\\niryo_basic\README.md")
-fichier_config = os.path.join(dir,"config.yaml")
+#dir = os.path.dirname("E:\Ismail\workspace\\niryo_basic\\config\\config.yaml")
+#fichier_config = os.path.join(dir,"config.yaml")
+
+fichier_config = '..\config\config.yaml'
 print("Le fichier config se trouve ici : ",fichier_config)
 
-with open(fichier_config,'r') as file:
+with open(fichier_config,'r+') as file:
     object_file = yaml.safe_load(file)
 
 print(object_file['IP_ROBOT'])

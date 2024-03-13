@@ -1,7 +1,16 @@
 from pyniryo import NiryoRobot, ObjectShape, ObjectColor
 import time
+import yaml
 
-robot = NiryoRobot("192.168.0.21")
+fichier_config = '..\config\config.yaml'
+print("Le fichier config se trouve ici : ",fichier_config)
+
+with open(fichier_config,'r+') as file:
+    object_file = yaml.safe_load(file)
+
+IP_robot = object_file['IP_ROBOT']
+
+robot = NiryoRobot(IP_robot)
 robot.calibrate_auto()
 
 #----------------- HELP CALIBRATING WORKSPACE : MOVING CAMERA TO OBSERVATION POSITION ------------------------
